@@ -1,0 +1,50 @@
+program strfreeDemo3;
+ 
+#include( "stdlib.hhf" );
+ 
+
+ 
+static
+ 
+    theString:string;
+ 
+        
+ 
+begin strfreeDemo3;
+ 
+//get input from user
+
+mov(1,cx);
+while (cx <=3) do
+
+ 
+  
+ 
+    stdout.put( "Enter the string xxx:", nl, nl, nl );
+ 
+    stdin.flushInput();
+ 
+    stdin.a_gets();
+ 
+    mov (eax, theString);
+ 
+    // Echo the string back to the user:
+ 
+    
+ 
+    stdout.put( "The string you entered was: ", cx,nl );
+ 
+    
+ 
+    // Free up the storage allocated by stralloc:
+	strfree(theString);
+	add(1,cx);
+	endwhile;
+	stdout.put("The program has ended", nl);
+ 
+
+ 
+    
+ 
+end strfreeDemo3;
+ 

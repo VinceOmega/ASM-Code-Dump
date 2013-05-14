@@ -1,0 +1,23 @@
+program ngate;
+#include("stdlib.hhf")
+static
+gatein:int32;
+gateout:int32;
+begin ngate;
+console.cls();
+	stdout.put("Please enter input for NOT gate:",nl);
+	stdin.get(gatein);
+	if (gatein = 1) then
+		stdout.put("You have entered: ", gatein, nl);
+		mov(0, gateout);
+		stdout.put("Result:", gateout);
+	elseif (gatein = 0) then
+		stdout.put("You have entered: ", gatein, nl);
+		mov(1,gateout);
+		stdout.put("Result:", gateout);
+	else
+		stdout.put("You have entered: ", gatein, " this is not 1 or 0!.",nl);
+		stdout.put("Software failure, please reboot.");
+		endif;
+		end ngate;
+		

@@ -1,0 +1,63 @@
+// Program to demonstrate str.cat and str.a_cat.
+ 
+
+ 
+program strcatDemoB;
+ 
+#include( "stdlib.hhf" );
+ 
+
+ 
+static
+ 
+    Letters:   string;
+ 
+    Cstring:      string;
+ 
+    First:    string;
+ 
+        
+ 
+begin strcatDemoB;
+console.cls(); 
+mov(1,cx);
+while(cx <=4) do
+ 
+    
+ 
+    // Get some user input to use in this example:
+ 
+    
+ 
+    stdout.put( "Enter a letter from a to z: " );
+ 
+    stdin.flushInput();
+ 
+    stdin.a_gets();
+ 
+    mov( eax, Letters );
+ 
+    
+    
+    // Use str.a_cat to combine the string strings:
+ 
+    
+ if (cx >1) then
+    str.a_cat( Letters, Cstring);
+ 
+    mov(eax, Cstring);
+ else
+    
+str.a_cat("", Letters);
+mov(eax, First);
+str.a_cpy(First);
+mov(eax, Cstring);
+endif;
+ stdout.put("Concatenated string is '", Cstring, "'", nl, nl);
+ inc(cx);
+endwhile;
+	strfree(Cstring);
+	strfree(First);
+	strfree(Letters);
+	stdout.put("End of Program");
+end strcatDemoB;

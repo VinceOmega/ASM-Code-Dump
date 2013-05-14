@@ -1,0 +1,56 @@
+program strfreeDemo3;
+ 
+#include( "stdlib.hhf" );
+ 
+
+ 
+static
+ 
+    theString:string;
+	flg:int16;
+ 
+        
+ 
+begin strfreeDemo3;
+
+//get input from user
+mov(0, flg);
+mov(1,cx);
+while (flg = 0) do
+
+    stdout.put( "Enter the string xxx:", nl, nl, nl );
+ 
+    stdin.flushInput();
+ 
+    stdin.a_gets();
+ 
+    mov (eax, theString);
+ 
+    // Echo the string back to the user:
+ 
+    
+ 
+    stdout.put( "The string you entered was: ", theString ,nl ,nl );
+ cmp('xxx', eax);
+ if (eax = 'xxx') then
+		mov(1, flg);
+	else
+	stdout.put("Please inpute value 'xxx':", nl, nl ,nl);
+    // Free up the storage allocated by stralloc:
+	strfree(theString);
+	add(1,cx);
+endif;
+	if (cx <= 3) then
+		stdout.put("Failure to follow instructions, system failure.", nl, nl);
+		mov(2,flg);
+		endif;
+		
+	endwhile;
+	stdout.put("The program has ended", nl);
+ 
+
+ 
+    
+ 
+end strfreeDemo3;
+ 

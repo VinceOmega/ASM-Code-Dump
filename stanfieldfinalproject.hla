@@ -1,0 +1,261 @@
+//Stanfield, Larry
+//CSCI 212, The Finale (Final Project)
+// April 27, 2009
+
+program fp;
+#include("stdlib.hhf");
+static
+z:int16; //Grabs input.
+//y:int16; //Counter
+flg:int16; //Event Flag
+flg2:int16; //Event Flag
+procedure addme; //Addition proceedure
+const
+	numVal: uns32:=4; //Defines size of array
+static
+boxA: uns32[numVal]; // Array one
+boxB: uns32[numVal]; // Array two
+a:uns32; //helps add and mov values into arrays, same goes for b
+b:uns32;
+c:char; //Needed to make a "Press enter." prompt.
+d:uns32; // Needed to help read arrays and create output.
+begin addme;
+//====================================================================================
+//This section grabs the information from the user and feeds it into Box A and Box B.
+//====================================================================================
+console.cls();
+mov(1,cx);
+mov(0, esi);
+while(cx <=4) do
+mov(0, ebx);
+stdout.put("Please enter a number from 1, to 100 into Box A. --");
+stdin.get(a);
+mov(a, eax);
+mov(eax, boxA[ebx+esi*4]);
+stdout.put("Please enter a number from 1, to 100 into Box B. --");
+stdin.get(b);
+mov(b, edx);
+mov(edx, boxB[ebx+esi*4]);
+stdout.put("You put [", a, "] into Box A and [", b, "] into Box_B! What joy!" , nl, nl);
+inc(esi);
+inc(cx);
+endwhile;
+//==================================================================================
+//The User Input Prompt, allows user to see all data input before continuing.
+//==================================================================================
+stdout.put("We will now calculate the data...Press anykey to continue.");
+stdin.flushInput();
+stdin.getc();
+mov(al, c);
+if (al = c) then
+
+//=======================================
+//Clears the screen and initalizes registers
+//=======================================
+console.cls();
+mov(0, esi);
+mov(1, ax);
+mov(0, edx);
+
+//==================================================================================
+//This portion takes the data from the arrays, moves them a or b thus allowing us
+//to add the values of a and b to a register and bypass the memory issue.
+//==================================================================================
+while(ax <=4) do
+//===========
+//Box A
+//===========
+mov(0, ebx);
+mov(boxA[ebx], ecx);
+mov(boxA[ebx+esi*4], ecx);
+mov(ecx, a);
+add(a, edx);
+//===========
+//Box B
+//===========
+mov(0, ebx);
+mov(boxB[ebx], ecx);
+mov(boxB[ebx+esi*4], ecx);
+mov(ecx, b);
+add(b, edx);
+
+//===================
+//Displays results.
+//===================
+stdout.put("Box A[",(type uns16 ax),"] + Box B[",(type uns16 ax),"] : ", boxA[ebx+esi*4], "+" ,boxB[ebx+esi*4], "=" ,(type uns32 edx), nl);
+
+// Clears registers holding results, increases counters for array and loop.
+inc(esi);
+mov(0, edx);
+inc(ax);
+endwhile;
+endif;
+//Displays output.
+
+stdout.put("Output complete.", nl, "Please note that the trail version of mathaid will only work for 4 entries or less.", nl, nl);
+stdout.put("Purchase the registered version for unlimited adding fun!" ,nl);
+end addme;
+
+procedure multi; //Multiplication procedure.
+
+const
+	numVal: uns32:=4; //Defines size of array
+static
+boxA: uns32[numVal]; // Array one
+boxB: uns32[numVal]; // Array two
+a:uns32; //helps add and mov values into arrays, same goes for b
+b:uns32;
+c:char; //Needed to make a "Press enter." prompt.
+d:uns32; // Needed to help read arrays and create output.
+//flg:int16; //Event Flag
+begin multi;
+//mov(0, flg);
+//====================================================================================
+//This section grabs the information from the user and feeds it into Box A and Box B.
+//====================================================================================
+console.cls();
+mov(1,cx);
+mov(0, esi);
+while(cx <=4) do
+mov(0, ebx);
+stdout.put("Please enter a number from 1, to 100 into Box A. --");
+stdin.get(a);
+mov(a, eax);
+mov(eax, boxA[ebx+esi*4]);
+stdout.put("Please enter a number from 1, to 100 into Box B. --");
+stdin.get(b);
+mov(b, edx);
+mov(edx, boxB[ebx+esi*4]);
+stdout.put("You put [", a, "] into Box A and [", b, "] into Box_B! What joy!" , nl, nl);
+inc(esi);
+inc(cx);
+endwhile;
+//==================================================================================
+//The User Input Prompt, allows user to see all data input before continuing.
+//==================================================================================
+stdout.put("We will now calculate the data...Press anykey to continue.");
+stdin.flushInput();
+stdin.getc();
+mov(al, c);
+if (al = c) then
+
+//=======================================
+//Clears the screen and initalizes registers
+//=======================================
+console.cls();
+mov(0, esi);
+mov(1, ax);
+mov(0, edx);
+
+//==================================================================================
+//This portion takes the data from the arrays, moves them a or b thus allowing us
+//to multiply the values of a and b to a register and bypass the memory issue.
+//==================================================================================
+while(ax <=4) do
+//===========
+//Box A and Box B
+//===========
+mov(0, ebx);
+mov(boxA[ebx], ecx);
+mov(boxA[ebx+esi*4], ecx);
+mov(0, ebx);
+mov(boxB[ebx], edi);
+mov(boxB[ebx+esi*4], edi);
+mov(ecx, a);
+mov(edi, b);
+mov(0, edi);
+while (edi < b) do
+add(a, edx);
+add(1, edi);
+endwhile;
+//===================
+//Displays results.
+//===================
+stdout.put("Box A[",(type uns16 ax),"] * Box B[",(type uns16 ax),"] : ", boxA[ebx+esi*4], "*" ,boxB[ebx+esi*4], "=" ,(type uns32 edx), nl);
+
+// Clears registers holding results, increases counters for array and loop.
+inc(esi);
+mov(0, edx);
+inc(ax);
+endwhile;
+endif;
+//Displays output.
+
+stdout.put("Output complete.", nl, "Please note that the trail version of mathaid will only work for 4 entries or less.", nl, nl);
+stdout.put("Purchase the registered version for unlimited multiplying fun!" ,nl);
+end multi;
+
+begin fp; //Main program
+console.cls();
+//==========================================
+//Prompt
+//==========================================
+stdout.put("Weclome to Mathaid, The wonderful math application that helps you add or multiply!", nl ,nl);
+stdout.put("[Note, this program is a trial version and will only allowing up to four entries or less.]", nl, nl);
+stdout.put("Please enter 1 for adding or 0 for multiplying.", nl, nl);
+//==========================================
+//Intialize variables and grab user output.
+//==========================================
+
+
+stdin.get(z);
+
+//if ((z < 0) || (z > 1)) then
+//mov(0, y);
+//endif;
+//while(y < 3) do
+
+//stdin.get("That's not the correct response. Just 1  or  0.");
+//stdin.get(z);
+//add(1, y);
+
+//if ((z = 1) || (z = 0)) then
+//mov(4,y);
+//endif;
+//endwhile;
+
+mov(0, flg);
+mov(0, flg2);
+
+//if (y = 3) then //Ends the input proceedure if error exceeds a certain amount of tries.
+//stdin.get("That's not the correct response. Just 1 or 0.");
+//mov(3, flg); //Bypasses flg loop.
+//endif;
+
+
+//==========================================
+//Sets up a while loop based on flag conditions.
+//==========================================
+while (flg = 0 && flg2 = 0) do
+//==========================================
+//Inner while loop to set up counter to limit the number of inputs.
+//==========================================
+
+if (z = 1) then
+mov(1, flg);
+//mov(4, y);
+
+elseif(z = 0) then
+mov(1, flg2);
+//mov(4, y);
+
+endif;
+
+
+
+endwhile;
+
+//Hands the results of the while loop.
+if(flg = 1) then
+call addme; //Calls the adding proceedure.
+
+elseif(flg2 = 1) then
+
+call multi; //Calls the multiplcation proceedure.
+
+elseif(flg = 3) then //Only display if there is an error.
+stdout.put("System failure, please reboot.",nl);
+endif;
+
+stdout.put("Program terminated."); //Final line.
+end fp;

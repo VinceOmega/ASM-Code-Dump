@@ -1,0 +1,44 @@
+//Stanfield, Larry
+//CSCI 212 Spring 2009
+//NOT Gate
+
+
+program notgate;
+#include("stdlib.hhf")
+static
+a:int16;
+flg:int16;
+ct:int16;
+endstatic;
+begin notgate;
+mov(0,flg);
+mov(0,ct);
+while(flg = 0) do
+add(1,ct);
+stdout.put("Welcome to the NOT gate. Enter a binary digit!", nl);
+stdin.get(a);
+if (a = 0) then
+	mov(1,a);
+	mov(1,flg);
+endif;
+if (a = 1) then
+	mov(0,a);
+	mov(1,flg);
+else
+	if (a <> 0) then
+	stdout.put("Binary digit = 1 or 0, do not enter anything else!", nl);
+endif;
+endif;
+if (ct > 2) then
+	mov(2,flg);
+	
+	endif;
+endwhile;
+
+if (flg = 2) then
+	stdout.put("Software failure, please reboot.", nl);	
+else
+	stdout.put("Your output is: ",a, nl);
+endif;
+
+end notgate;

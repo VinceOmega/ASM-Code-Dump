@@ -1,0 +1,23 @@
+program alahregs;
+#include("stdlib.hhf")
+static
+x:int16;
+y:int16;
+a:char;
+b:char;
+endstatic;
+begin alahregs;
+stdout.put("Enter an integer from 0 to 100.", nl, nl);
+stdin.get(x);
+stdout.put("Enter a 2nd integer from 0 to 100.", nl, nl);
+stdin.get(y);
+mov(0,ax);
+stdout.put("The value of AX is:", ax, nl, nl);
+mov(x,ax);
+stdout.put("The value of register SP after mov x is: ", sp, nl, nl);
+mov(y,ax);
+stdout.put("The value of register SP  after mov y is: ", sp, nl, nl);
+add(x, ax);
+stdout.put("The value of register AH after adding SP to AX is: ", sp, nl, nl);
+
+end alahregs;

@@ -1,0 +1,43 @@
+//Stanfield Larry
+//CSCI Assignment #7- Usearray with results displayed. 
+//April 7, 2009
+
+program usearrays;
+ 
+#include( "stdlib.hhf" )
+const
+    nelements: uns32:= 16;
+static
+   Numbs: uns32[nelements];
+   NumVal: uns32;
+endstatic;
+begin usearrays;
+    console.cls();
+    mov(0, esi);
+    mov(1, cx);
+    while(cx <=16) do
+        mov(0, ebx);
+        stdout.put("Please enter a number from 1 to 100",nl);
+        stdin.get(NumVal);
+        mov(NumVal, eax);
+        mov(eax, Numbs[ebx+esi*4]);
+        stdout.put(NumVal," ");  
+        inc(esi);
+        inc(ebx);    
+        inc(cx);
+    endwhile;
+	mov(0, esi);
+	mov(1, cx);
+	console.cls();
+	while(cx <=16) do
+	mov(0, ebx);
+	mov(Numbs[ebx], eax);
+					mov(Numbs[ebx+esi*4], eax);
+					mov(eax, NumVal);
+					stdout.put(NumVal, " ");
+					inc(esi);
+					inc(ebx);
+					inc(cx);
+	endwhile;
+    stdout.put(nl, "The program has ended",nl);
+ end usearrays;

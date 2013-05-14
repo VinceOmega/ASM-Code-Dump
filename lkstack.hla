@@ -1,0 +1,27 @@
+program lkstack;
+#include("stdlib.hhf")
+static
+x:int8;
+y:int8;
+a:char;
+b:char;
+endstatic;
+begin lkstack;
+stdout.put("Enter an integer from 0 to 100.", nl, nl);
+stdin.get(x);
+stdout.put("Enter a 2nd integer from 0 to 100.", nl, nl);
+stdin.get(y);
+mov(0,ax);
+stdout.put("The value of AX is:", ax, nl, nl);
+mov(x,al);
+stdout.put("The value of register after move x to AL for AX is: ", ax, nl, nl);
+mov(y,ah);
+stdout.put("The value of register after move y to AH for BX is: ", ax, nl, nl);
+//mov('a',cx);
+//stdout.put("The value of register after move 'a' SP is: ", sp, nl, nl);
+//mov('b',dx);
+//stdout.put("The value of register after move 'b' SP is: ", sp, nl, nl);
+add(ah, al);
+stdout.put("The value of register AH after adding AH to AL is: ", ax, nl, nl);
+
+end lkstack;

@@ -1,0 +1,25 @@
+//Stanfield, Larry
+//CSCI, April 6, 2009
+//Assignment number #6 (?), Zero2
+
+program zero1;
+#include("stdlib.hhf")
+static
+	decct:int32;
+	zeroTerminatedString:char; @nostorage;
+						byte "This is the zero terminated string", 0;
+endstatic;
+begin zero1;
+console.cls();
+mov( &zeroTerminatedString, ebx);
+	mov(0,eax);
+	while( (type byte [ebx]) <> 0) do
+	stdout.put("Character: ", (type char [ebx])," at location #", (type uns32 eax),nl, nl);
+					inc(ebx);
+					inc(eax);
+					
+				endwhile;
+				mov(eax, decct);
+				//String length is now in EAX.
+				stdout.put("The number of characters is: ", (type uns32 eax),nl);
+				end zero1;

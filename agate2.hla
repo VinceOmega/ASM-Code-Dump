@@ -1,0 +1,65 @@
+//Stanfield, Larry
+//Alternate AND gate
+//For kicks.
+
+program agate;
+#include("stdlib.hhf")
+static
+gateina:int32;
+gateinb:int32;
+gateout:int32;
+okay:int32;
+begin agate;
+console.cls();
+	mov(0, ax);
+	while (okay = 0) do
+	add(1, ax);
+		stdout.put("Please enter input A for AND gate:",nl);
+	stdin.get(gateina);
+	stdout.put("Please enter input B for AND gate:",nl);
+	stdin.get(gateinb);
+	if (gateina = 1) then
+		if (gateinb = 1) then
+		mov(1, okay);
+		mov(1, gateout);
+		elseif(gateinb > 1) then
+		mov(0, okay);
+		stdout.put("Not okay, bad touch!", nl);	
+		else
+			mov(1,okay);
+			mov(0,gateout);
+		endif;
+	elseif(gateina > 1) then
+		mov(0,okay);
+		stdout.put("Not okay, bad touch!", nl);
+	endif;
+	if(gateina < 1) then
+		if(gateinb >1) then
+			mov(0,okay);
+			stdout.put("Not okay, bad touch!", nl);
+		elseif(gateinb <=1) then
+		mov(1,okay);
+		mov(0, gateout);
+		endif;
+	endif;
+	if (ax > 3) then
+			mov(3,okay); //NOT OKAY
+		if (gateina > 1) then
+			if(gateinb > 1)then
+			stdout.put("You have entered: (", gateina,",", gateinb, ") this is not 1 or 0!.",nl);
+			stdout.put("Software failure, please reboot.");
+			endif;
+		endif;
+		if(gateina <=1)then
+			if (gateinb <=1) then
+			stdout.put("Too late, you only get 3 tries.");
+			endif;
+		endif;
+	endif;	
+	endwhile;
+	if (okay = 1) then
+	stdout.put("Input is: (", gateina, "," ,gateinb, ")",nl);
+	stdout.put("Output is: ", gateout);
+	endif;
+		end agate;
+		

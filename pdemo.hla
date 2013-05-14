@@ -1,0 +1,31 @@
+program proceddemo;
+#include ("stdlib.hhf")
+static
+x:int16;
+y:int16;
+//===============================================
+procedure prthello(t:int16);
+	static
+	pout:string :="hello";
+begin prthello;
+mov(1,cx);
+while(cx<=t) do
+	stdout.put(pout, "#", (type uns16 cx) , nl, nl);
+	inc(cx);
+endwhile;
+end prthello;
+//================================================
+begin proceddemo;
+console.cls();
+	stdout.put("How many Goodbyes do you want?--");
+	stdin.get(x);
+	stdout.put("How many Hellos do you want?--");
+	stdin.get(y);
+	mov(1, bx);
+	while (bx <= x) do
+		prthello(y);
+		stdout.put("Goodbye #", (type uns16 bx), nl, nl);
+		inc(bx);
+	endwhile;
+	stdout.put("End of program.",nl);
+end proceddemo;

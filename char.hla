@@ -1,0 +1,39 @@
+program mcode;
+
+#include("stdlib.hhf")
+static
+c1:char;
+c2:char;
+mc1:char := 'P';
+mc2:char:= 'A';
+flg:int16;
+begin mcode;
+console.cls(); //Clears screen
+stdout.put("Hey YOU, what state are you in? I want the abbr. ver. f00!",nl,nl,nl);
+stdin.flushInput();
+ 
+stdin.getc();
+mov(c1, al);
+mov(c2, al);
+mov(0, ax);
+mov(0, flg);
+mov(0, cx);
+while(flg = 0) do
+	add(1,cx);
+if (c1 = mc1) then
+	if (c2 = mc2) then
+		mov(flg = 1);
+		else
+		stdout.put("That ain't your state, f00!",nl,nl,nl);
+	endif;
+endif;
+if (cx >= 3) then
+	stdout.put("Nevermind, I don't want to know." I SAID NEVER MIND!, nl,nl,nl);
+endwhile;
+
+if (flg = 1) then
+	stdout.put("So the state is " , al, " then? Let's go to philly and grab a cheesteak!");
+	else
+	stdout.put("I'll ask someone who DO KNOW.",nl,nl,nl);
+endif;
+end mcode;

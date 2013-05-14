@@ -1,0 +1,52 @@
+program StrDemo;
+ 
+#include( "stdlib.hhf" );
+ 
+
+ 
+static
+ theString:string := "String of length 19";
+    decct:int32;
+	zeroTerminatedString:char; @nostorage;
+						byte "String length is 19", 0;
+ 
+        
+ 
+begin StrDemo;
+console.cls();
+ 
+    mov( theString, ebx );  // Get pointer to the string.
+ 
+    
+ 
+    mov( [ebx-4], eax );    // Get current length
+ 
+    mov( [ebx-8], ecx );    // Get maximum length
+ 
+    
+ 
+    stdout.put
+ 
+    ( 
+ 
+        "theString = `", theString, "`", nl,
+ 
+        "length( theString )= ", (type uns32 eax ), nl,
+ 
+        "maxLength( theString )= ", (type uns32 ecx ), nl
+ 
+    );
+	
+	mov( &zeroTerminatedString, ebx);
+	mov(0,eax);
+	while( (type byte [ebx]) <> 0) do
+					inc(ebx);
+					inc(eax);
+				endwhile;
+				mov(eax, decct);
+ 
+    stdout.put("The number of characters is: ", ecx,nl);
+ 
+end StrDemo;
+ 
+

@@ -1,0 +1,82 @@
+program bincvt;
+#include("stdlib.hhf")
+static
+f:int16;
+s:int16;
+l:int16;
+dn:int16;
+flg:int16;
+ct:int16;
+endstatic;
+begin bincvt;
+mov(0,flg);
+mov(0,ct);
+while(flg=0) do
+add(1,ct);
+stdout.put("Please enter first bianry digit",nl);
+stdin.get(f);
+if (f = 0) then
+	add(0,dn);
+stdout.put("The first binary digit is - ",f,nl,nl,nl);
+mov(1,flg);
+endif;
+if (f = 1) then
+	add(1,dn);
+	stdout.put("The first binary digit is - ",f,nl,nl,nl);
+mov(1,flg);
+else
+	if (f <>0) then
+	stdout.put("illegal input",nl);
+endif;
+if (ct > 3) then
+	mov(2,flg);
+endif;
+while(flg=1) do
+add(1,ct);
+stdout.put("Please enter second binary digit",nl);
+stdin.get(s);
+if (s = 0) then
+	add(0,dn);
+stdout.put("The second binary digit is - ",s,nl,nl,nl);
+mov(3,flg);
+endif;
+if (s = 1) then
+	add(2,dn);
+stdout.put("The second binary digit is -", s,nl,nl,nl);
+mov(3,flg);
+else
+	if (s <>0) then
+	stdout.put("Illegal input", nl);
+endif;
+if (ct > 3) then
+	mov(4,flg);
+endif;
+endif;
+
+while(flg=5) do
+add(1,ct);
+stdout.put("Please enter Third binary digit",nl);
+stdin.get(l);
+if (l = 0) then
+	add(0,dn);
+	stdout.put("The third binary digit is - ",l,nl,nl,nl);
+mov(5,flg);
+endif;
+if (l = 1) then
+	add(4,dn);
+		stdout.put("The third binary digit is - ",l,nl,nl,nl);
+mov(5,flg);
+else
+	if (l <> 0) then
+stdout.put("Illegal input",nl);
+	endif;
+	if (ct > 3) then
+	mov(6,flg);
+endif;
+endif;
+stdout.put("The decimal value for the binary number: ", l,s,f, " ", "is ->",dn,nl,nl,nl);
+stdout.put("the program has ended");
+endif;
+endwhile;
+stdout.put("End of program")
+end bincvt;

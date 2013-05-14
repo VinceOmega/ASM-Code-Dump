@@ -1,0 +1,19 @@
+program mkstrings;
+#include("stdlib.hhf")
+static
+a:char;
+b:char;
+s:string;
+c:string;
+endstatic;
+begin mkstrings;
+mov(0, ax);
+stdout.put("Enter a character from a-z", nl, nl);
+stdin.get(al);
+stdout.put("Enter a character from a-z", nl, nl);
+stdin.get(ah);
+mov(ax,s);
+stdout.put("The chars of :", al, ah, "made s", nl, nl);
+stdout.put("The value of S is", s, nl);
+
+end mkstrings;
